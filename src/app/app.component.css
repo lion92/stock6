@@ -1,1 +1,8 @@
+#pricicpal{ color: #828756;
+  background-image: url("../assets/fond.svg") ;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 13px;
 
+  color: white;}

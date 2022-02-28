@@ -1,31 +1,32 @@
 *{
   box-sizing: border-box;
 
+
 }
 body{
   font-family: 'Rajdhani', sans-serif;
   width: 80%;
   margin : 2% auto;
-  color: #2E2E2E;
+  color: #ffffff;
   background-color: #161a1a;
 }
 h1, h2, h3, h4, h5, h6{
   font-family: 'Sanchez', serif;
   text-align: center;
-  color: #7b9c3a;
+  color: #ffffff;
 }
 h1{
   font-size: 2em;
   margin: 20px 0;
 }
 hr{
-  border: 4px solid #9c973a;
+  border: 4px solid #ffffff;
   box-shadow: 2px 2px 2px 0 #090c0c;
   margin-bottom: 50px;
 }
 i.fa{
   font-size: 1.6em;
-  color: #9c973a;
+  color: #ffffff;
 }
 form{
   line-height: 2em;
@@ -38,7 +39,7 @@ form div.form-input{
 }
 form div > label{
   display: block;
-  color: #161a1a;
+  color: #ffffff;
 }
 form div > label[for="capcha"]{
   display: inline-block;
@@ -91,7 +92,7 @@ select{
 }
 select#distribution{
   width: 100%;
-  height: ;
+  height: 100%;
   margin-right: auto;
   margin-left: auto;
   border: 1px solid #3a9c90;

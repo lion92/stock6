@@ -13,22 +13,28 @@
 
     <div class="form-input">
       <label for="nom">Nom du Produit</label>
-      <input type="text" name="nom" id="nom" value="" placeholder="Nom du produit" required/>
+      <input type="text" name="nom" id="nom"   [(ngModel)]="this.produitbyId[0].nom" placeholder="Nom du produit" required/>
 
-      <div class="verifForm">ATTENTION</div>
+
+    </div>
+    <div class="form-input">
+      <label for="nom">Id Categorie</label>
+      <input type="text" name="idCategorie" id="idCtaegorie" [(ngModel)]="this.produitbyId[0].idCategorie"placeholder="Nom du produit" required/>
     </div>
 
     <div class="form-input">
       <label for="prixproduit">Prix</label>
-      <input type="text" name="prix" id="prixproduit" value="" placeholder="Prix" required/>
+      <input type="text" name="prix"   id="prixproduit" [(ngModel)]="this.produitbyId[0].Prix" placeholder="Prix" required/>
 
 
     </div>
 
     <div class="form-input">
       <label for="idProduit">idproduit</label>
-      <input type="text" name="idProduit" id="idProduit" value="" placeholder="Idproduit" required/>
+      <input type="text" name="idProduit"   id="idProduit" [(ngModel)]="this.produitbyId[0].idProduit" placeholder="Idproduit" required/>
     </div>
+
+
     <button type="button" name="creer" id="modifier">
       Modifier
     </button>

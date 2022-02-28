@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -18,7 +18,9 @@ import { AjoutcategorieComponent } from './ajoutcategorie/ajoutcategorie.compone
 import { AjoutclientComponent } from './ajoutclient/ajoutclient.component';
 import { AjoutventeComponent } from './ajoutvente/ajoutvente.component';
 import { ChartventeComponent } from './chartvente/chartvente.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { PersonneComponent } from './personne/personne.component';
+import { AjoutpersonneComponent } from './ajoutpersonne/ajoutpersonne.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,13 +34,15 @@ import { ChartventeComponent } from './chartvente/chartvente.component';
     AjoutcategorieComponent,
     AjoutclientComponent,
     AjoutventeComponent,
-    ChartventeComponent
+    ChartventeComponent,
+    PersonneComponent,
+    AjoutpersonneComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    BrowserAnimationsModule,MatDialogModule, MatButtonModule
+    BrowserAnimationsModule,MatDialogModule, MatButtonModule, HttpClientModule,FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

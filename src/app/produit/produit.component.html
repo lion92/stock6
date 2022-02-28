@@ -7,8 +7,8 @@
           <h2>Manage <b>Produit</b></h2>
         </div>
         <div class="col-sm-6">
-          <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span  (click)="openDialog()">Add New Produit</span></a>
-          <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+          <a (click)="openDialog()" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span  (click)="openDialog()">Add New Produit</span></a>
+          <a  class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
         </div>
       </div>
     </div>
@@ -24,60 +24,29 @@
         <th>Nom</th>
         <th>Prix</th>
         <th>Date ajout</th>
+        <th>idCategorie</th>
         <th>idProduit</th>
         <th>Actions</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
+      <tr *ngFor="let produit of listproduit">
         <td>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
 							</span>
         </td>
-        <td>Service informatique</td>
-        <td>33</td>
-        <td>2 juillet 20022 à 11h34</td>
-        <td>1</td>
+        <td>{{produit.nom}}</td>
+        <td>{{produit.Prix}}</td>
+        <td>{{produit.dateProduit}}</td>
+        <td>{{produit.idCategorie}}</td>
+        <td>{{produit.idProduit}}</td>
         <td>
-          <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-          <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+         <i class="material-icons" data-toggle="tooltip" [routerLink]="['/updateProduit',produit.idProduit]" title="Edit">&#xE254;</i>
+          <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
         </td>
       </tr>
-      <tr>
-        <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox2" name="options[]" value="1">
-								<label for="checkbox2"></label>
-							</span>
-        </td>
-        <td>Service informatique base</td>
-        <td>40</td>
-        <td>2 juillet 20022 à 11h34</td>
-        <td>2</td>
-        <td>
-          <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-          <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox3" name="options[]" value="1">
-								<label for="checkbox3"></label>
-							</span>
-        </td>
-        <td>Service informatique front</td>
-        <td>45</td>
-        <td>2 juillet 20022 à 11h34</td>
-        <td>3</td>
-        <td>
-          <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-          <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-        </td>
-      </tr>
-
       </tbody>
     </table>
     <div class="clearfix">

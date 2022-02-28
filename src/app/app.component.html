@@ -1,2 +1,19 @@
-<app-nav></app-nav>
+
+<nav class="navbar p-3" style="background: lightyellow">
+  <a [routerLink]="['/login']">Login</a>
+  <a [routerLink]="['/register']">Register</a>
+  <a [routerLink]="['/client']">Client</a>
+  <a [routerLink]="['/produit']">Produit</a>
+  <a [routerLink]="['/categorie']">Categorie</a>
+  <a [routerLink]="['/vente']">Vente</a>
+  <a [routerLink]="['/ajoutclient']">Ajout Client</a>
+  <a [routerLink]="['/ajoutproduit']">Ajout Produit</a>
+  <a [routerLink]="['/ajoutcategorie']">Ajout Categorie</a>
+  <a [routerLink]="['/ajoutvente']">Ajout Vente</a>
+  <a [routerLink]="['/graphique']">Graphique Vente</a>
+</nav>
+
+<div id="pricicpal">
+  <router-outlet></router-outlet>.
+</div>
 
