@@ -1,0 +1,27 @@
+ul {
+
+  color: #828756;
+  background-image: url("../../assets/fond.svg") ;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 13px;
+  border: 1px solid #191919;
+
+  box-shadow: 0 5px 10px 5px rgba(0,0,0,0.2);
+
+}
+li a{
+  color: #FFbb00;
+
+}
+#principale{
+  color: #828756;
+  background-image: url("../../assets/fond.svg") ;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 13px;
+
+  color: white;
+}
