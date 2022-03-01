@@ -23,10 +23,14 @@
         </th>
         <th>Nom</th>
         <th>Prix</th>
-        <th>Date ajout</th>
+        <th>Stock</th>
         <th>idCategorie</th>
         <th>idProduit</th>
+        <th>Date ajout</th>
+
         <th>Actions</th>
+
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -39,12 +43,13 @@
         </td>
         <td>{{produit.nom}}</td>
         <td>{{produit.Prix}}</td>
-        <td>{{produit.dateProduit}}</td>
+        <td>{{produit.stock}}</td>
         <td>{{produit.idCategorie}}</td>
         <td>{{produit.idProduit}}</td>
+        <td>{{produit.dateProduit}}</td>
         <td>
          <i class="material-icons" data-toggle="tooltip" [routerLink]="['/updateProduit',produit.idProduit]" title="Edit">&#xE254;</i>
-          <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+          <i (click)="this.supprimerProduit(produit.idProduit.toString())" class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
         </td>
       </tr>
       </tbody>

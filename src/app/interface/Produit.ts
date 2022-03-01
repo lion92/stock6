@@ -1,5 +1,5 @@
 export default interface Produit {
-  idProduit?: number;
+  idProduit: number;
   idCategorie: number;
   Prix: number;
   stock:number;

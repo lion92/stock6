@@ -13,32 +13,36 @@
 
     <div class="form-input">
       <label for="nom">Nom du Produit</label>
-      <input type="text" name="nom" id="nom"   [(ngModel)]="this.produitbyId[0].nom" placeholder="Nom du produit" required/>
+      <input type="text" name="nom" id="nom"   [(ngModel)]="this.nom" placeholder="Nom du produit" required/>
 
 
     </div>
     <div class="form-input">
       <label for="nom">Id Categorie</label>
-      <input type="text" name="idCategorie" id="idCtaegorie" [(ngModel)]="this.produitbyId[0].idCategorie"placeholder="Nom du produit" required/>
+      <input type="text" name="idCategorie" id="idCtaegorie" [(ngModel)]="this.idCategorie"placeholder="Nom du produit" required/>
     </div>
 
     <div class="form-input">
       <label for="prixproduit">Prix</label>
-      <input type="text" name="prix"   id="prixproduit" [(ngModel)]="this.produitbyId[0].Prix" placeholder="Prix" required/>
+      <input type="text" name="prix"   id="prixproduit" [(ngModel)]="this.Prix" placeholder="Prix" required/>
 
 
+    </div>
+    <div class="form-input">
+      <label for="stock">stock</label>
+      <input type="text" name="stock"   id="stock" [(ngModel)]="this.stock" placeholder="Idproduit" required/>
     </div>
 
     <div class="form-input">
       <label for="idProduit">idproduit</label>
-      <input type="text" name="idProduit"   id="idProduit" [(ngModel)]="this.produitbyId[0].idProduit" placeholder="Idproduit" required/>
+      <input type="text" name="idProduit"   id="idProduit" [(ngModel)]="this.idProduit" placeholder="Idproduit" required/>
     </div>
 
 
-    <button type="button" name="creer" id="modifier">
+    <button type="button" (click)="modifierProduit()" name="creer" id="modifier">
       Modifier
     </button>
-    <button type="button" name="creer" id="creer">
+    <button (click)="ajouterProduit()" type="button" name="creer" id="creer">
       Créer
     </button>
   </form>
