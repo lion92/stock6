@@ -20,13 +20,28 @@ const routes: Routes = [
   },
   {
     path:"updatePersonne",component:PersonneComponent
+  },{
+    path:"updatePersonne/:id",component:AjoutpersonneComponent
+  },
+  {
+    path:"updateClient",component:ClientComponent
+  },{
+    path:"updateClient/:id",component:AjoutclientComponent
+  },
+  {
+    path:"updateCategorie",component:CategorieComponent
+  },{
+    path:"updateCategorie/:id",component:AjoutcategorieComponent
+  },
+  {
+    path:"updateVente",component:VenteComponent
+  },{
+    path:"updateVente/:id",component:AjoutventeComponent
   },
   {
     path:"updateProduit/:id",component:AjoutproduitComponent
   },
-  {
-    path:"updatePersonne/:id",component:AjoutpersonneComponent
-  },
+
   {
     path:"produit",component:ProduitComponent
   },
