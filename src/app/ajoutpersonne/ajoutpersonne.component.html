@@ -14,52 +14,56 @@
 
     <div class="form-input">
       <label for="nom">Nom de la Personne</label>
-      <input type="text" name="nom" id="nom" value="" placeholder="Nom du client" required/>
+      <input type="text" name="nom" id="nom" value="" [(ngModel)]="this.nom" placeholder="Nom de la personne" required/>
 
     </div>
 
     <div class="form-input">
       <label for="Prenom">Prenom de la Perosnne</label>
-      <input type="text" name="Prenom" id="Prenom" value="" placeholder="Prenom" required/>
+      <input type="text" name="Prenom" id="Prenom" value="" [(ngModel)]="this.prenom" placeholder="Prenom" required/>
 
 
     </div>
 
     <div class="form-input">
       <label for="Age">Age de la Personne</label>
-      <input type="text" name="Age" id="Age" value="" placeholder="Age" required/>
+      <input type="text" name="Age" id="Age" value="" [(ngModel)]="this.age" placeholder="Age" required/>
     </div>
 
     <div class="form-input">
       <label for="Numero">Numero</label>
-      <input type="text" name="Numero" id="Numero" value="" placeholder="Numero" required/>
+      <input type="text" name="Numero" id="Numero" value="" [(ngModel)]="this.numero" placeholder="Numero" required/>
     </div>
 
     <div class="form-input">
       <label for="idPersonne">idPersonne</label>
-      <input type="text" name="idPersonne" id="idPersonne" value="" placeholder="IdClient" required/>
+      <input type="text" name="idPersonne" id="idPersonne" value="" [(ngModel)]="this.idPersonne" placeholder="IdPersonne" required/>
     </div>
     <div class="form-input">
       <label for="adresse">adresse</label>
-      <input type="text" name="adresse" id="adresse" value="" placeholder="IdClient" required/>
+      <input type="text" name="adresse" id="adresse" value="" [(ngModel)]="this.adresse" placeholder="adresse" required/>
+    </div>
+    <div class="form-input">
+      <label for="ville">adresse</label>
+      <input type="text" name="ville" id="ville" value="" [(ngModel)]="this.ville" placeholder="adresse" required/>
     </div>
     <div class="form-input">
       <label for="Code">Code Postale</label>
-      <input type="text" name="Code" id="Code" value="" placeholder="Code" required/>
+      <input type="text" name="Code" id="Code" value="" [(ngModel)]="this.codePostale" placeholder="Code postale" required/>
     </div>
     <div class="form-input">
       <label for="Email">Email</label>
-      <input type="text" name="Email" id="Email" value="" placeholder="Code" required/>
+      <input type="text" name="Email" id="Email" value="" [(ngModel)]="this.email" placeholder="Email" required/>
     </div>
     <div class="form-input">
       <label for="Dateajout">Date ajout</label>
-      <input type="text" name="Dateajout" id="Dateajout" value="" placeholder="Dateajout" required/>
+      <input type="text" name="Dateajout" id="Dateajout" value="" [(ngModel)]="this.dateAjout" placeholder="Dateajout" required/>
     </div>
 
-    <button type="button" name="creer" id="modifier">
+    <button type="button" cdkAriaLive="" (click)="modifierPersonne()" name="creer" id="modifier">
       Modifier
     </button>
-    <button type="button" name="creer" id="creer">
+    <button type="button" (click)="ajouterPersonne()" name="creer" id="creer">
       Créer
     </button>
   </form>

@@ -19,8 +19,15 @@ const routes: Routes = [
     path:"updateProduit",component:ProduitComponent
   },
   {
+    path:"updatePersonne",component:PersonneComponent
+  },
+  {
     path:"updateProduit/:id",component:AjoutproduitComponent
-  },  {
+  },
+  {
+    path:"updatePersonne/:id",component:AjoutpersonneComponent
+  },
+  {
     path:"produit",component:ProduitComponent
   },
   {
@@ -46,7 +53,7 @@ const routes: Routes = [
     path:"ajoutcategorie",component:AjoutcategorieComponent
   }
   ,  {
-    path:"ajoutpersone",component:AjoutpersonneComponent
+    path:"ajoutpersonne",component:AjoutpersonneComponent
   }
   ,  {
     path:"personne",component:PersonneComponent
