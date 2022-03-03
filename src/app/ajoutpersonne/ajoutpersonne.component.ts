@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ProduitService} from "../produit.service";
 import Personne from "../interface/Personne";
 import {PersonneService} from "../personne.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-ajoutpersonne',
@@ -21,9 +22,10 @@ export class AjoutpersonneComponent implements OnInit {
   public email: any;
   public idPersonne: number=0;
   dateAjout: any;
+  PhotoFileName: string="";
 
 
-  constructor(private route:ActivatedRoute, private  produiService:ProduitService, private router:Router, private personneService:PersonneService) { }
+  constructor(private http:HttpClient,private route:ActivatedRoute, private  produiService:ProduitService, private router:Router, private personneService:PersonneService) { }
 
   ngOnInit(): void {
     console.log(this.route.snapshot.params['id'])
@@ -71,5 +73,21 @@ export class AjoutpersonneComponent implements OnInit {
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['./personne'])
   }
+  imageUpload($event: any) {
+    let file =$event.target.files[0];
+    const formData:FormData=new FormData();
+    formData.set("avatar", file);
+    this.http.post("http://localhost:8000/AjoutPhoto",formData).subscribe(data=> {
 
+      console.log(file);
+      this.personneService.updatePersonneByIdImage$(file.name, this.idPersonne).subscribe(data2=>{
+
+      })
+      this.personneService.getPersonneById$(""+this.idPersonne).subscribe(data3=>{
+
+        this.PhotoFileName="http://localhost:8000/"+data3.message.image;
+
+      })
+    })
+  }
 }

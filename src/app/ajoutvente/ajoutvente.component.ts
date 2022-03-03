@@ -14,16 +14,16 @@ import Vente from '../interface/Vente'
 export class AjoutventeComponent implements OnInit {
 
   public ventebyId:Vente[]=[];
-  private idPersonne: number=0;
-  private societe: string="";
-  private poste: string="";
-  private idClient: number=0;
-  private idProduit: number=0;
-  private quantite: number=0;
-  private prixTotal: number=0;
-  private idUser: number=0;
-  private taxe: number=0;
-  private idVente: number=0;
+  public idPersonne: number=0;
+  public societe: string="";
+  public poste: string="";
+  public idClient: number=0;
+  public idProduit: number=0;
+  public quantite: number=0;
+  public prixTotal: number=0;
+  public idUser: number=0;
+  public taxe: number=0;
+  public idVente: number=0;
   constructor(private route:ActivatedRoute,private venteService:VenteService, private clientService:ClientService, private  produiService:ProduitService,private categorieService:CategorieService, private router:Router) { }
 
   ngOnInit(): void {
@@ -38,17 +38,17 @@ export class AjoutventeComponent implements OnInit {
         this.idClient=this.ventebyId[0].idClient;
         this.idProduit=this.ventebyId[0].idProduit;
         this.quantite=this.ventebyId[0].quantite;
-        this.prixTotal=this.ventebyId[0].prixTotal;
+        this.prixTotal=this.ventebyId[0].PrixTotal;
         this.idUser=this.ventebyId[0].idUser;
         this.taxe=this.ventebyId[0].taxe;
-        this.idVente=this.ventebyId[0].idVente
+        this.idVente=this.ventebyId[0].idvente
         console.log(this.ventebyId)
       })
     }
 
   }
-  modifierProduit(){
-    this.venteService.updateventeById$(this.idClient, this.idProduit, this.quantite, this.prixTotal,this.idUser, this.taxe, this.idVente).subscribe(data=>{
+  modifierVente(){
+    this.venteService.updateventeById$(+this.idClient, +this.idProduit, +this.quantite, +this.prixTotal,+this.idUser, +this.taxe, +this.idVente).subscribe(data=>{
       console.log(data);
       this.rechargeClick();
     })
@@ -56,7 +56,7 @@ export class AjoutventeComponent implements OnInit {
 
 
   }
-  ajouterProduit(){
+  ajouterVente(){
     this.venteService.ajoutvente$(this.idClient, this.idProduit, this.quantite, this.prixTotal,this.idUser, this.taxe ).subscribe(data=>{
       console.log(data);
       this.rechargeClick();

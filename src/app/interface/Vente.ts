@@ -1,10 +1,10 @@
 export default interface Vente {
-  idVente: number;
+  idvente: number;
   idClient: number;
   idProduit: number;
   quantite:number;
-  prixTotal:number;
+  PrixTotal:number;
   idUser:number;
   taxe:number;
-  dateAjout:string;
+  dateVente:string;
 }

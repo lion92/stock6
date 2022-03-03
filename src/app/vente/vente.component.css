@@ -209,11 +209,7 @@ table.table .avatar {
   box-shadow: none;
   border-color: #dddddd;
 }
-.container{
-  padding: 1em;
-  width: 100vw;
-  height: 100vh;
-}
+
 .modal textarea.form-control {
   resize: vertical;
 }

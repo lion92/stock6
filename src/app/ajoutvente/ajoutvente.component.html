@@ -1,11 +1,15 @@
-<h1>Création de Produit</h1>
+<h1>vente</h1>
 <hr/>
 
+  <div class="container">
+    <div><app-personne>
+    </app-personne></div>
+    <div><app-produit></app-produit></div>
+    <div><app-client></app-client></div>
+    <div> <app-categorie></app-categorie></div>
+    <div><app-vente></app-vente></div>
 
-<!--PROGRESS BAR !-->
-<div id="top1" class="top-one" style="height: 20px; top: auto; bottom: 0px; transition-duration: 3s;">
-  <div class="colors"></div>
-</div>
+    </div>
 
 
 <div class="form">
@@ -13,37 +17,45 @@
 
     <div class="form-input">
       <label for="vendeur">vendeur</label>
-      <input type="text" name="vendeur" id="vendeur" value="" placeholder="Vendeur" required/>
+      <input type="text" name="vendeur" id="vendeur" value="" [(ngModel)]="this.idUser" placeholder="Vendeur" required/>
 
 
     </div>
 
     <div class="form-input">
       <label for="Client">Client</label>
-      <input type="text" name="Client" id="Client" value="" placeholder="Client" required/>
+      <input type="text" name="Client" id="Client" value="" placeholder="Client" [(ngModel)]="this.idClient" required/>
 
 
     </div>
 
     <div class="form-input">
       <label for="Quantite">Quantite</label>
-      <input type="text" name="Quantite" id="Quantite" value="" placeholder="Quantite" required/>
+      <input type="text" name="Quantite" id="Quantite" value="" placeholder="Quantite" [(ngModel)]="this.quantite" required/>
     </div>
 
     <div class="form-input">
       <label for="PrixTTC">PrixTTC</label>
-      <input type="text" name="PrixTTC" id="PrixTTC" value="" placeholder="PrixTTC" required/>
+      <input type="text" name="PrixTTC" id="PrixTTC" value="" placeholder="PrixTTC" [(ngModel)]="this.prixTotal" required/>
+    </div>
+    <div class="form-input">
+      <label for="taxe">taxe</label>
+      <input type="text" name="taxe" id="taxe" value="" placeholder="taxe" [(ngModel)]="this.taxe" required/>
+    </div>
+    <div class="form-input">
+      <label for="idProduit">idProduit</label>
+      <input type="text" name="idProduit" id="idProduit" value="" placeholder="taxe" [(ngModel)]="this.idProduit" required/>
     </div>
 
 
     <div class="form-input">
       <label for="idVente">IdVente</label>
-      <input type="text" name="idVente" id="idVente" value="" placeholder="IdVente" required/>
+      <input type="text" name="idVente" id="idVente" value="" placeholder="IdVente"[(ngModel)]="this.idVente" required/>
     </div>
-    <button type="button" name="creer" id="modifier">
+    <button type="button" (click)="modifierVente()" name="creer" id="modifier">
       Modifier
     </button>
-    <button type="button" name="creer" id="creer">
+    <button type="button" (click)="ajouterVente()" name="creer" id="creer">
       Créer
     </button>
   </form>

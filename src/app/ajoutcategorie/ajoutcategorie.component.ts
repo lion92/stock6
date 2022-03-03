@@ -32,7 +32,7 @@ public type: string="";
     }
 
   }
-  modifierProduit(){
+  modifierCategorie(){
     this.categorieService.updatecategorieById$(this.nom, this.type, this.idCategorie).subscribe(data=>{
       console.log(data);
       this.rechargeClick();
@@ -41,7 +41,7 @@ public type: string="";
 
 
   }
-  ajouterProduit(){
+  ajouterCategorie(){
     this.categorieService.ajoutcategorie$(this.nom, this.type).subscribe(data=>{
       console.log(data);
       this.rechargeClick();

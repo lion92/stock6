@@ -28,20 +28,20 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
+      <tr *ngFor="let categrie of listCategorie">
         <td>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
 							</span>
         </td>
-        <td>Service informatique</td>
-        <td>service</td>
-        <td>2 juillet 20022 à 11h34</td>
-        <td>1</td>
+        <td>{{categrie.nom}}</td>
+        <td>{{categrie.type}}</td>
+        <td>{{categrie.dateAjout}}</td>
+        <td>{{categrie.idCategorie}}</td>
         <td>
-          <a class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-          <a class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+          <a class="edit" [routerLink]="['/updateCategorie',categrie.idCategorie]" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+          <a (click)="this.supprimerVente(categrie.idCategorie.toString())" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
         </td>
       </tr>
 

@@ -1,11 +1,6 @@
 <h1>Création de Produit</h1>
-<hr/>
 
-
-<!--PROGRESS BAR !-->
-<div id="top1" class="top-one" style="height: 20px; top: auto; bottom: 0px; transition-duration: 3s;">
-  <div class="colors"></div>
-</div>
+<div class="container"><app-categorie></app-categorie>
 
 
 <div class="form">
@@ -19,7 +14,7 @@
     </div>
     <div class="form-input">
       <label for="nom">Id Categorie</label>
-      <input type="text" name="idCategorie" id="idCtaegorie" [(ngModel)]="this.idCategorie"placeholder="Nom du produit" required/>
+      <input type="text" name="idCategorie" id="idCtaegorie" [(ngModel)]="this.idCategorie"placeholder="Id Categorie" required/>
     </div>
 
     <div class="form-input">
@@ -46,4 +41,5 @@
       Créer
     </button>
   </form>
+</div>
 </div>

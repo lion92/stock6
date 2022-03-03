@@ -9,6 +9,11 @@ import{
   transition
 }
 from'@angular/animations'
+import Personne from "../interface/Personne";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ProduitService} from "../produit.service";
+import {ClientService} from "../client.service";
+import Client from "../interface/Client";
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -34,10 +39,19 @@ from'@angular/animations'
 })
 export class ClientComponent implements OnInit {
   public isOpen: boolean=true;
-
-  constructor(public dialog:MatDialog) { }
+  public listClient:Client[]=[];
+  constructor(private dialog:MatDialog,private route:ActivatedRoute,private clientService:ClientService, private  produiService:ProduitService, private router:Router) { }
 
   ngOnInit(): void {
+    this.clientService.getclients$().subscribe(data=>{
+      this.listClient=data.message;
+
+      console.log(data.message);
+    })
+    this.route.paramMap.subscribe(params=>{
+      let id= params.get("id");
+      console.log(id);
+    })
   }
   openDialog() {
     this.dialog.open(AjoutclientComponent,{
@@ -48,7 +62,20 @@ export class ClientComponent implements OnInit {
     });
   }
 
+  supprimerClient(idClient:string){
+
+    this.clientService.supprimerclient$(+idClient).subscribe(data=>{
+      console.log(data);
+      this.rechargeClick();
+    })
+  }
+
   toggle() {
     this.isOpen=!this.isOpen;
+  }
+  rechargeClick() {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['./vente'])
   }
 }

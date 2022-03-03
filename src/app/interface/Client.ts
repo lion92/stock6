@@ -1,6 +1,7 @@
 export default interface Client {
-  idPersonne: number;
+  idPersonneClient: number;
   societe: string;
   poste: string;
   idClient:number;
+  dateAjout:string;
 }

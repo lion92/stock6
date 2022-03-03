@@ -6,8 +6,8 @@
           <h2>Manage <b>Vente</b></h2>
         </div>
         <div class="col-sm-6">
-          <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span (click)="openDialog()">Add New Produit</span></a>
-          <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+          <a class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span (click)="openDialog()">Add New Produit</span></a>
+          <a  class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
         </div>
       </div>
     </div>
@@ -25,29 +25,34 @@
         <th>Produit</th>
         <th>Quantite</th>
         <th>Prix total</th>
+        <th>Taxe</th>
         <th>Date de la vente</th>
         <th>id de la Vente</th>
         <th>Actions</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
+      <tr *ngFor="let vente of listVente">
         <td>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
 							</span>
         </td>
-        <td>Monsieur Dupond</td>
-        <td>Monsieur Tintin</td>
-        <td>Service informatique</td>
-        <td>1</td>
+        <td>{{vente.idUser}}</td>
+        <td>{{vente.idClient}}</td>
+        <td>{{vente.idProduit}}</td>
+        <td>{{vente.quantite}}</td>
+        <td>{{vente.PrixTotal}}</td>
+        <td>{{vente.taxe}}</td>
+        <td>{{vente.dateVente}}</td>
+        <td>{{vente.idvente}}</td>
         <td>33</td>
         <td>22 fevrier 2022 à 10h</td>
         <td>1</td>
         <td>
-          <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-          <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+          <a [routerLink]="['/updateVente',vente.idvente]" href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+          <a (click)="this.supprimerVente(vente.idvente.toString())" href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
         </td>
       </tr>
 

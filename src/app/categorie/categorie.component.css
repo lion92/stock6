@@ -6,11 +6,7 @@ body {
   font-family: 'Varela Round', sans-serif;
   font-size: 13px;
 }
-.container{
-  width: 100vw;
-  height: 100vh;
-  padding: 1em;
-}
+
 .table-wrapper {
   background: #fff;
   padding: 20px 25px;

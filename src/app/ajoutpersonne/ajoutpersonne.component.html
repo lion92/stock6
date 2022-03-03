@@ -1,7 +1,7 @@
 <p>ajoutpersonne works!</p>
 <h1>Création de Produit</h1>
 <hr/>
-
+<app-personne></app-personne>
 
 <!--PROGRESS BAR !-->
 <div id="top1" class="top-one" style="height: 20px; top: auto; bottom: 0px; transition-duration: 3s;">
@@ -11,7 +11,10 @@
 
 <div class="form">
   <form class="scrollbar-primary">
-
+    <div class="col-sm-4">
+      <img width="250px" height="250px" [src]="PhotoFileName"/>
+      <input class="m-2" type="file" (change)="imageUpload($event)">
+    </div>
     <div class="form-input">
       <label for="nom">Nom de la Personne</label>
       <input type="text" name="nom" id="nom" value="" [(ngModel)]="this.nom" placeholder="Nom de la personne" required/>
@@ -45,7 +48,7 @@
     </div>
     <div class="form-input">
       <label for="ville">adresse</label>
-      <input type="text" name="ville" id="ville" value="" [(ngModel)]="this.ville" placeholder="adresse" required/>
+      <input type="text" name="ville" id="ville" value="" [(ngModel)]="this.ville" placeholder="adresse ville" required/>
     </div>
     <div class="form-input">
       <label for="Code">Code Postale</label>

@@ -6,6 +6,7 @@ import {ProduitService} from "../produit.service";
 import Personne from "../interface/Personne"
 import {AjoutproduitComponent} from "../ajoutproduit/ajoutproduit.component";
 import {AjoutpersonneComponent} from "../ajoutpersonne/ajoutpersonne.component";
+import {HttpClient} from "@angular/common/http";
 @Component({
   selector: 'app-personne',
   templateUrl: './personne.component.html',
@@ -13,8 +14,9 @@ import {AjoutpersonneComponent} from "../ajoutpersonne/ajoutpersonne.component";
 })
 export class PersonneComponent implements OnInit {
   public listpersonne:Personne[]=[];
+  PhotoFileName:string="http://localhost:8000/";
 
-  constructor(private personneService:PersonneService,private router:Router,public dialog:MatDialog, public produitService:ProduitService,private route:ActivatedRoute) { }
+  constructor(private http:HttpClient,private personneService:PersonneService,private router:Router,public dialog:MatDialog, public produitService:ProduitService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -47,6 +49,8 @@ export class PersonneComponent implements OnInit {
   rechargeClick() {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['./personne'])
+    this.router.navigate(['./'])
   }
+
+
 }

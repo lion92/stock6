@@ -12,10 +12,10 @@ import {ClientService} from "../client.service";
 })
 export class AjoutclientComponent implements OnInit {
   public clientbyId:Client[]=[];
-  private idPersonne: number=0;
-  private societe: string="";
-  private poste: string="";
-  private idClient: number=0;
+  public idPersonne: number=0;
+  public societe: string="";
+  public poste: string="";
+  public idClient: number=0;
   constructor(private route:ActivatedRoute, private clientService:ClientService, private  produiService:ProduitService,private categorieService:CategorieService, private router:Router) { }
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class AjoutclientComponent implements OnInit {
       this.clientService.getclientById$(this.route.snapshot.params['id']).subscribe(data=>{
         this.clientbyId=data.message;
         console.log(data);
-        this.idPersonne=this.clientbyId[0].idPersonne;
+        this.idPersonne=this.clientbyId[0].idPersonneClient;
         this.societe=this.clientbyId[0].societe;
         this.poste=this.clientbyId[0].poste;
         this.idClient=this.clientbyId[0].idClient;
@@ -36,7 +36,7 @@ export class AjoutclientComponent implements OnInit {
     }
 
   }
-  modifierProduit(){
+  modifierClient(){
     this.clientService.updateclientById$(this.idPersonne, this.idClient, this.societe, this.poste ).subscribe(data=>{
       console.log(data);
       this.rechargeClick();
@@ -45,7 +45,7 @@ export class AjoutclientComponent implements OnInit {
 
 
   }
-  ajouterProduit(){
+  ajouterClient(){
     this.clientService.ajoutclient$(this.idPersonne, this.societe, this.poste ).subscribe(data=>{
       console.log(data);
       this.rechargeClick();

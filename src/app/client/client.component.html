@@ -21,33 +21,30 @@
 								<label for="selectAll"></label>
 							</span>
         </th>
-        <th>Nom</th>
-        <th>Prenom</th>
-        <th>Poste</th>
+        <th>id Peronnne Client</th>
         <th>Societe</th>
-        <th>Numero</th>
+        <th>Poste</th>
         <th>Date Ajout</th>
-        <th>idClient</th>
+        <th>IdClient</th>
+        <th>Action</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
+      <tr *ngFor="let client of listClient">
         <td>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
 							</span>
         </td>
-        <td>Monsieur Tintin</td>
-        <td>tintin</td>
-        <td>Charge de projet</td>
-        <td>Societe de Tintin</td>
-        <td>00000000000</td>
-        <td>1 janvier 2022 à 11h</td>
-        <td>1</td>
+        <td>{{client.idPersonneClient}}</td>
+        <td>{{client.societe}}</td>
+        <td>{{client.poste}}</td>
+        <td>{{client.dateAjout}}</td>
+        <td>{{client.idClient}}</td>
         <td>
-          <a  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-          <a  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+          <a  [routerLink]="['/updateClient',client.idClient]" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+          <a (click)="this.supprimerClient(client.idClient.toString())" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
         </td>
       </tr>
 

@@ -1,7 +1,7 @@
 <h1>Création de Produit</h1>
 <hr/>
 
-
+<app-personne></app-personne>
 <!--PROGRESS BAR !-->
 <div id="top1" class="top-one" style="height: 20px; top: auto; bottom: 0px; transition-duration: 3s;">
   <div class="colors"></div>
@@ -12,36 +12,32 @@
   <form class="scrollbar-primary">
 
     <div class="form-input">
-      <label for="nom">Nom du client</label>
-      <input type="text" name="nom" id="nom" value="" placeholder="Nom du client" required/>
+      <label for="nom">id Personne</label>
+      <input type="text" name="nom" id="nom" value="" placeholder="id Personne" [(ngModel)]="this.idPersonne" required/>
 
     </div>
 
     <div class="form-input">
-      <label for="Prenom">Prenom</label>
-      <input type="text" name="Prenom" id="Prenom" value="" placeholder="Prenom" required/>
+      <label for="Societe">Societe</label>
+      <input type="text" name="Societe" id="Societe" value="" placeholder="Societe" [(ngModel)]="this.societe" required/>
 
 
     </div>
 
     <div class="form-input">
       <label for="Poste">Poste</label>
-      <input type="text" name="Poste" id="Poste" value="" placeholder="Poste" required/>
+      <input type="text" name="Poste" id="Poste" value="" placeholder="Poste" [(ngModel)]="this.poste" required/>
     </div>
 
-    <div class="form-input">
-      <label for="Numero">Numero</label>
-      <input type="text" name="Numero" id="Numero" value="" placeholder="Numero" required/>
-    </div>
 
     <div class="form-input">
       <label for="idClient">idClient</label>
-      <input type="text" name="idClient" id="idClient" value="" placeholder="IdClient" required/>
+      <input type="text" name="idClient" id="idClient" value="" placeholder="IdClient" [(ngModel)]="this.idClient" required/>
     </div>
-    <button type="button" name="creer" id="modifier">
+    <button type="button" (click)="modifierClient()" name="creer" id="modifier">
       Modifier
     </button>
-    <button type="button" name="creer" id="creer">
+    <button type="button" (click)="ajouterClient()" name="creer" id="creer">
       Créer
     </button>
   </form>

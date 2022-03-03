@@ -1,4 +1,4 @@
-export default interface Peronne {
+export default interface Personne {
   idPersonne: number;
   nom: string;
   prenom: string;
@@ -9,4 +9,5 @@ export default interface Peronne {
   codePostale:string;
   email:string;
   ajoutDate:string;
+  image:string;
 }
