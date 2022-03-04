@@ -23,6 +23,7 @@
 								<label for="selectAll"></label>
 							</span>
         </th>
+        <th>Image</th>
         <th>Nom</th>
         <th>Prenom</th>
         <th>Age</th>
@@ -36,18 +37,19 @@
 
         <th>Actions</th>
 
-        <th></th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let personne of pageSlice">
+
         <td>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="{{personne.idPersonne}}" (change)="onChangeSelect(personne.idPersonne, $event)" value="1">
 								<label for="checkbox1"></label>
 							</span>
         </td>
-        <img [src]="PhotoFileName+personne.image"/>
+        <td><img [src]="PhotoFileName+personne.image"/></td>
+
         <td>{{personne.nom}}</td>
         <td>{{personne.prenom}}</td>
         <td>{{personne.age}}</td>

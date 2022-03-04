@@ -48,9 +48,7 @@
         <td>{{vente.taxe}}</td>
         <td>{{vente.dateVente}}</td>
         <td>{{vente.idvente}}</td>
-        <td>33</td>
-        <td>22 fevrier 2022 à 10h</td>
-        <td>1</td>
+
         <td>
           <a [routerLink]="['/updateVente',vente.idvente]" href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
           <a (click)="this.supprimerVente(vente.idvente)" href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
