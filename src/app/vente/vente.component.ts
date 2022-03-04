@@ -16,12 +16,13 @@ import {VenteService} from "../vente.service";
 export class VenteComponent implements OnInit {
 
   public listVente:Vente[]=[];
+  public pageSlice: Vente[]=[];
   constructor(private dialog:MatDialog,private venteService:VenteService, private route:ActivatedRoute,private clientService:ClientService, private categoieService:CategorieService, private  produiService:ProduitService, private router:Router) { }
 
   ngOnInit(): void {
     this.venteService.getventes$().subscribe(data=>{
       this.listVente=data.message;
-
+      this.pageSlice=this.listVente.slice(0,1);
       console.log(data.message);
     })
     this.route.paramMap.subscribe(params=>{
@@ -47,5 +48,15 @@ export class VenteComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['./vente'])
+  }
+  onChangeChange($event: any) {
+    console.log($event)
+    console.log($event.pageIndex)
+    let startIndex=$event.pageIndex * $event.pageSize;
+    let endIndex= startIndex + $event.pageSize;
+    if(endIndex>this.listVente.length){
+      endIndex=this.listVente.length;
+    }
+    this.pageSlice=this.listVente.slice(startIndex, endIndex);
   }
 }

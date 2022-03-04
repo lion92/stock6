@@ -15,12 +15,13 @@ import Categorie from "../interface/Categorie";
 export class CategorieComponent implements OnInit {
 
   public listCategorie:Categorie[]=[];
+  public pageSlice: Categorie[]=[];
   constructor(private dialog:MatDialog,private route:ActivatedRoute,private clientService:ClientService, private categoieService:CategorieService, private  produiService:ProduitService, private router:Router) { }
 
   ngOnInit(): void {
     this.categoieService.getcategories$().subscribe(data=>{
       this.listCategorie=data.message;
-
+      this.pageSlice=this.listCategorie.slice(0,1);
       console.log(data.message);
     })
     this.route.paramMap.subscribe(params=>{
@@ -47,5 +48,15 @@ export class CategorieComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['./categorie'])
+  }
+  onChangeChange($event: any) {
+    console.log($event)
+    console.log($event.pageIndex)
+    let startIndex=$event.pageIndex * $event.pageSize;
+    let endIndex= startIndex + $event.pageSize;
+    if(endIndex>this.listCategorie.length){
+      endIndex=this.listCategorie.length;
+    }
+    this.pageSlice=this.listCategorie.slice(startIndex, endIndex);
   }
 }

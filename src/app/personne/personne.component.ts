@@ -15,6 +15,7 @@ import {HttpClient} from "@angular/common/http";
 export class PersonneComponent implements OnInit {
   public listpersonne:Personne[]=[];
   PhotoFileName:string="http://localhost:8000/";
+  public pageSlice:Personne[]=[];
 
   constructor(private http:HttpClient,private personneService:PersonneService,private router:Router,public dialog:MatDialog, public produitService:ProduitService,private route:ActivatedRoute) { }
 
@@ -22,6 +23,7 @@ export class PersonneComponent implements OnInit {
 
     this.personneService.getPersonnes$().subscribe(data=>{
       this.listpersonne=data.message;
+      this.pageSlice=this.listpersonne.slice(0,1);
 
       console.log(data.message);
     })
@@ -53,4 +55,14 @@ export class PersonneComponent implements OnInit {
   }
 
 
+  onChangeChange($event: any) {
+    console.log($event)
+    console.log($event.pageIndex)
+    let startIndex=$event.pageIndex * $event.pageSize;
+    let endIndex= startIndex + $event.pageSize;
+    if(endIndex>this.listpersonne.length){
+      endIndex=this.listpersonne.length;
+    }
+    this.pageSlice=this.listpersonne.slice(startIndex, endIndex);
+  }
 }

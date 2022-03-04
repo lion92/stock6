@@ -23,11 +23,23 @@ export class AjoutpersonneComponent implements OnInit {
   public idPersonne: number=0;
   dateAjout: any;
   PhotoFileName: string="";
-
+  public listpersonne:Personne[]=[];
 
   constructor(private http:HttpClient,private route:ActivatedRoute, private  produiService:ProduitService, private router:Router, private personneService:PersonneService) { }
 
   ngOnInit(): void {
+    this.personneService.getPersonnes$().subscribe(data=>{
+      this.listpersonne=data.message;
+
+      console.log(data.message);
+    })
+    this.route.paramMap.subscribe(params=>{
+      let id= params.get("id");
+      console.log(id);
+    })
+
+
+
     console.log(this.route.snapshot.params['id'])
     let id=this.route.snapshot.params['id'];
     console.log("//");

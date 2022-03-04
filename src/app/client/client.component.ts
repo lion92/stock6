@@ -40,12 +40,13 @@ import Client from "../interface/Client";
 export class ClientComponent implements OnInit {
   public isOpen: boolean=true;
   public listClient:Client[]=[];
+  public pageSlice: Client[]=[];
   constructor(private dialog:MatDialog,private route:ActivatedRoute,private clientService:ClientService, private  produiService:ProduitService, private router:Router) { }
 
   ngOnInit(): void {
     this.clientService.getclients$().subscribe(data=>{
       this.listClient=data.message;
-
+      this.pageSlice=this.listClient.slice(0,1);
       console.log(data.message);
     })
     this.route.paramMap.subscribe(params=>{
@@ -77,5 +78,15 @@ export class ClientComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['./vente'])
+  }
+  onChangeChange($event: any) {
+    console.log($event)
+    console.log($event.pageIndex)
+    let startIndex=$event.pageIndex * $event.pageSize;
+    let endIndex= startIndex + $event.pageSize;
+    if(endIndex>this.listClient.length){
+      endIndex=this.listClient.length;
+    }
+    this.pageSlice=this.listClient.slice(startIndex, endIndex);
   }
 }

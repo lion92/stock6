@@ -55,4 +55,6 @@ public type: string="";
     this.router.navigate(['./categorie'])
   }
 
+
+
 }

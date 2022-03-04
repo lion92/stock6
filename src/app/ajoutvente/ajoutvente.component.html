@@ -16,17 +16,21 @@
   <form class="scrollbar-primary">
 
     <div class="form-input">
-      <label for="vendeur">vendeur</label>
-      <input type="text" name="vendeur" id="vendeur" value="" [(ngModel)]="this.idUser" placeholder="Vendeur" required/>
-
-
+      <select [ngModel]="this.idUser" (ngModelChange)="onChange($event)" name="sel2">
+        <option [value]="perosnne.idPersonne" *ngFor="let perosnne of listpersonne">{{perosnne.nom}}</option>
+      </select>
     </div>
-
+{{this.idUser}}
     <div class="form-input">
-      <label for="Client">Client</label>
-      <input type="text" name="Client" id="Client" value="" placeholder="Client" [(ngModel)]="this.idClient" required/>
 
+      <div class="form-input">
+        <select [ngModel]="this.idClient" (ngModelChange)="onChangeClient($event)" name="sel3">
+          <option *ngFor="let personne of listpersonne" [value]="personne.idPersonne+';'+personne.image">{{personne.nom}}</option>
+        </select>
+      </div>
+      <img [src]="'http://localhost:8000/'+this.adresseImage"/>
 
+      {{this.idClient}}
     </div>
 
     <div class="form-input">
@@ -43,8 +47,12 @@
       <input type="text" name="taxe" id="taxe" value="" placeholder="taxe" [(ngModel)]="this.taxe" required/>
     </div>
     <div class="form-input">
-      <label for="idProduit">idProduit</label>
-      <input type="text" name="idProduit" id="idProduit" value="" placeholder="taxe" [(ngModel)]="this.idProduit" required/>
+      <div class="form-input">
+        <select [ngModel]="this.idProduit" (ngModelChange)="onChangeProduit($event)" name="sel2">
+          <option  *ngFor="let produit of listproduit" [value]="produit.idProduit" >{{produit.nom}}</option>
+        </select>
+      </div>
+      {{this.idProduit}}
     </div>
 
 
