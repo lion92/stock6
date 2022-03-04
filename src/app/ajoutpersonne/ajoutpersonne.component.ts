@@ -4,6 +4,7 @@ import {ProduitService} from "../produit.service";
 import Personne from "../interface/Personne";
 import {PersonneService} from "../personne.service";
 import {HttpClient} from "@angular/common/http";
+import {MessageService} from "../message.service";
 
 @Component({
   selector: 'app-ajoutpersonne',
@@ -25,7 +26,7 @@ export class AjoutpersonneComponent implements OnInit {
   PhotoFileName: string="";
   public listpersonne:Personne[]=[];
 
-  constructor(private http:HttpClient,private route:ActivatedRoute, private  produiService:ProduitService, private router:Router, private personneService:PersonneService) { }
+  constructor(public messageService: MessageService, private http:HttpClient,private route:ActivatedRoute, private  produiService:ProduitService, private router:Router, private personneService:PersonneService) { }
 
   ngOnInit(): void {
     this.personneService.getPersonnes$().subscribe(data=>{
@@ -47,7 +48,7 @@ export class AjoutpersonneComponent implements OnInit {
     if(id!=null&&id!=undefined){
       this.personneService.getPersonneById$(this.route.snapshot.params['id']).subscribe(data=>{
         this.personnebyId=data.message;
-        console.log(data);
+        this.messageService.setMessage(""+JSON.stringify(data.message));;
         this.nom=this.personnebyId[0].nom;
         this.prenom=this.personnebyId[0].prenom;
         this.age=this.personnebyId[0].age;
@@ -65,7 +66,7 @@ export class AjoutpersonneComponent implements OnInit {
   }
   modifierPersonne(){
     this.personneService.updatePersonneById$( this.nom, this.prenom, this.age, this.ville, this.numero, this.adresse, this.codePostale, this.email, this.idPersonne).subscribe(data=>{
-      console.log(data);
+      this.messageService.setMessage(""+JSON.stringify(data.message));;
       this.rechargeClick();
     })
 
@@ -74,7 +75,7 @@ export class AjoutpersonneComponent implements OnInit {
   }
   ajouterPersonne(){
     this.personneService.ajoutPersonne$( this.nom, this.prenom, this.age, this.ville, this.numero, this.adresse, this.codePostale, this.email).subscribe(data=>{
-      console.log(data);
+      this.messageService.setMessage(""+JSON.stringify(data.message));;
       this.rechargeClick();
     })
   }

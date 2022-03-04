@@ -34,7 +34,7 @@ private updateProduitService:string="updateProduit"
     return res;
   }
 
-  getProduitById$(id:string): Observable<any> {
+  getProduitById$(id:number): Observable<any> {
     let res: Observable<Produit[]> = this.http.get<any[]>(
       this.url + this.produitByidUrl+"/"+id,
       this.optionRequete

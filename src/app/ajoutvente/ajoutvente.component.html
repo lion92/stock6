@@ -1,19 +1,19 @@
 <h1>vente</h1>
 <hr/>
 
-  <div class="container">
-    <div><app-personne>
-    </app-personne></div>
-    <div><app-produit></app-produit></div>
-    <div><app-client></app-client></div>
-    <div> <app-categorie></app-categorie></div>
-    <div><app-vente></app-vente></div>
 
-    </div>
-
-
+<div class="container information"><p>{{this.messageService.getMessage()}}</p></div>
 <div class="form">
   <form class="scrollbar-primary">
+
+    <div class="form-input">
+      <div class="form-input">
+        <select [ngModel]="this.idProduit" (ngModelChange)="onChangeProduit($event)" name="sel2">
+          <option  *ngFor="let produit of listproduit" [value]="produit.idProduit" >{{produit.nom}}</option>
+        </select>
+      </div>
+      {{this.idProduit}}
+    </div>
 
     <div class="form-input">
       <select [ngModel]="this.idUser" (ngModelChange)="onChange($event)" name="sel2">
@@ -25,45 +25,41 @@
 
       <div class="form-input">
         <select [ngModel]="this.idClient" (ngModelChange)="onChangeClient($event)" name="sel3">
-          <option *ngFor="let personne of listpersonne" [value]="personne.idPersonne+';'+personne.image">{{personne.nom}}</option>
+          <option *ngFor="let personne of listClient" [value]="personne.idClient">{{personne.idPersonneClient}}</option>
         </select>
       </div>
-      <img [src]="'http://localhost:8000/'+this.adresseImage"/>
+      <!--<img [src]="'http://localhost:8000/'+this.adresseImage"/>-->
 
       {{this.idClient}}
     </div>
 
     <div class="form-input">
       <label for="Quantite">Quantite</label>
-      <input type="text" name="Quantite" id="Quantite" value="" placeholder="Quantite" [(ngModel)]="this.quantite" required/>
+      <input type="text" name="Quantite" id="Quantite"  (ngModelChange)="onChangeQuantite($event)" placeholder="Quantite" [(ngModel)]="this.quantite" required/>
+        <p>Stock disponible:{{this.stockProduit}}</p>
+      <p *ngIf="this.quantite>this.stockProduit">La quantité est supérieur au stock</p>
     </div>
 
     <div class="form-input">
       <label for="PrixTTC">PrixTTC</label>
-      <input type="text" name="PrixTTC" id="PrixTTC" value="" placeholder="PrixTTC" [(ngModel)]="this.prixTotal" required/>
+      <input [disabled]="true" type="text" name="PrixTTC" id="PrixTTC" value="" placeholder="PrixTTC" [(ngModel)]="this.prixTotal" required/>
+      <p>Prix unitaire:{{this.prix}}</p>
     </div>
     <div class="form-input">
       <label for="taxe">taxe</label>
       <input type="text" name="taxe" id="taxe" value="" placeholder="taxe" [(ngModel)]="this.taxe" required/>
     </div>
-    <div class="form-input">
-      <div class="form-input">
-        <select [ngModel]="this.idProduit" (ngModelChange)="onChangeProduit($event)" name="sel2">
-          <option  *ngFor="let produit of listproduit" [value]="produit.idProduit" >{{produit.nom}}</option>
-        </select>
-      </div>
-      {{this.idProduit}}
-    </div>
+
 
 
     <div class="form-input">
       <label for="idVente">IdVente</label>
       <input type="text" name="idVente" id="idVente" value="" placeholder="IdVente"[(ngModel)]="this.idVente" required/>
     </div>
-    <button type="button" (click)="modifierVente()" name="creer" id="modifier">
+    <button *ngIf="this.quantite<=this.stockProduit" type="button" (click)="modifierVente()" name="creer" id="modifier">
       Modifier
     </button>
-    <button type="button" (click)="ajouterVente()" name="creer" id="creer">
+    <button *ngIf="this.quantite<=this.stockProduit" type="button" (click)="ajouterVente()" name="creer" id="creer">
       Créer
     </button>
   </form>

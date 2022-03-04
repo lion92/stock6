@@ -8,6 +8,9 @@ import {CategorieService} from "../categorie.service";
 import {ProduitService} from "../produit.service";
 import Vente from "../interface/Vente";
 import {VenteService} from "../vente.service";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import {MessageService} from "../message.service";
 @Component({
   selector: 'app-vente',
   templateUrl: './vente.component.html',
@@ -17,7 +20,9 @@ export class VenteComponent implements OnInit {
 
   public listVente:Vente[]=[];
   public pageSlice: Vente[]=[];
-  constructor(private dialog:MatDialog,private venteService:VenteService, private route:ActivatedRoute,private clientService:ClientService, private categoieService:CategorieService, private  produiService:ProduitService, private router:Router) { }
+  public listId: number[]= [];
+  message: string="";
+  constructor(public messageService:MessageService,private dialog:MatDialog,public venteService:VenteService, private route:ActivatedRoute,private clientService:ClientService, private categoieService:CategorieService, private  produiService:ProduitService, private router:Router) { }
 
   ngOnInit(): void {
     this.venteService.getventes$().subscribe(data=>{
@@ -37,13 +42,19 @@ export class VenteComponent implements OnInit {
       autoFocus: false,
     });
   }
-  supprimerVente(idClient:string){
+  supprimerVente(idClient:number){
 
     this.venteService.supprimervente$(+idClient).subscribe(data=>{
-      console.log(data);
+      this.messageService.setMessage(""+JSON.stringify(data.message));;
       this.rechargeClick();
     })
   }
+  supprimerListVente(listAsupprimer:number[]){
+    listAsupprimer.forEach(data=>{
+      this.supprimerVente(data);
+    })
+  }
+
   rechargeClick() {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
@@ -58,5 +69,35 @@ export class VenteComponent implements OnInit {
       endIndex=this.listVente.length;
     }
     this.pageSlice=this.listVente.slice(startIndex, endIndex);
+  }
+
+  onChangeSelect(clientId:number, $event: any) {
+    if($event.target.checked===true) {
+      this.listId.push(clientId);
+    } else {
+      let index = this.listId.indexOf(clientId)
+      console.log(index);
+      if(index>-1) {
+        this.listId.splice(index, 1);
+      }
+    }
+    console.log(this.listId);
+
+  }
+
+  generatePDF() {
+    var data = document.getElementById('tableVente');
+    if(data!==null){
+      html2canvas(data).then(canvas => {
+        var imgWidth = 208;
+        var imgHeight = canvas.height * imgWidth / canvas.width;
+        const contentDataURL = canvas.toDataURL('image/png')
+        let pdf = new jsPDF('p', 'mm', 'a4');
+        var position = 0;
+        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+        pdf.save('newPDF.pdf');
+
+      });
+    }
   }
 }

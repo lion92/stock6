@@ -14,6 +14,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ProduitService} from "../produit.service";
 import {ClientService} from "../client.service";
 import Client from "../interface/Client";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import {MessageService} from "../message.service";
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -41,7 +44,8 @@ export class ClientComponent implements OnInit {
   public isOpen: boolean=true;
   public listClient:Client[]=[];
   public pageSlice: Client[]=[];
-  constructor(private dialog:MatDialog,private route:ActivatedRoute,private clientService:ClientService, private  produiService:ProduitService, private router:Router) { }
+  public listId: number[]= [];
+  constructor(public messageService:MessageService,private dialog:MatDialog,private route:ActivatedRoute,private clientService:ClientService, private  produiService:ProduitService, private router:Router) { }
 
   ngOnInit(): void {
     this.clientService.getclients$().subscribe(data=>{
@@ -63,11 +67,17 @@ export class ClientComponent implements OnInit {
     });
   }
 
-  supprimerClient(idClient:string){
+  supprimerClient(idClient:number){
 
     this.clientService.supprimerclient$(+idClient).subscribe(data=>{
-      console.log(data);
+      this.messageService.setMessage(""+JSON.stringify(data.message));;
       this.rechargeClick();
+    })
+  }
+
+  supprimerListClient(listAsupprimer:number[]){
+    listAsupprimer.forEach(data=>{
+      this.supprimerClient(data);
     })
   }
 
@@ -88,5 +98,34 @@ export class ClientComponent implements OnInit {
       endIndex=this.listClient.length;
     }
     this.pageSlice=this.listClient.slice(startIndex, endIndex);
+  }
+
+  onChangeSelect(clientId:number, $event: any) {
+    if($event.target.checked===true) {
+      this.listId.push(clientId);
+    } else {
+      let index = this.listId.indexOf(clientId)
+      console.log(index);
+      if(index>-1) {
+        this.listId.splice(index, 1);
+      }
+    }
+    console.log(this.listId);
+
+  }
+  generatePDF() {
+    var data = document.getElementById('tableClient');
+    if(data!==null){
+      html2canvas(data).then(canvas => {
+        var imgWidth = 208;
+        var imgHeight = canvas.height * imgWidth / canvas.width;
+        const contentDataURL = canvas.toDataURL('image/png')
+        let pdf = new jsPDF('p', 'mm', 'a4');
+        var position = 0;
+        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+        pdf.save('newPDF.pdf');
+
+      });
+    }
   }
 }

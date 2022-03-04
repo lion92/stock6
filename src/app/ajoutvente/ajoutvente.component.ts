@@ -9,13 +9,14 @@ import Vente from '../interface/Vente'
 import {PersonneService} from "../personne.service";
 import Personne from "../interface/Personne";
 import Produit from "../interface/Produit";
+import {MessageService} from "../message.service";
 @Component({
   selector: 'app-ajoutvente',
   templateUrl: './ajoutvente.component.html',
   styleUrls: ['./ajoutvente.component.css']
 })
 export class AjoutventeComponent implements OnInit {
-
+  public listClient:Client[]=[];
   public ventebyId:Vente[]=[];
   public idPersonne: number=0;
   public societe: string="";
@@ -32,7 +33,11 @@ export class AjoutventeComponent implements OnInit {
 
   public listproduit:Produit[]=[];
   adresseImage: string="";
-  constructor(private produitService:ProduitService,private personneService:PersonneService, private route:ActivatedRoute,private venteService:VenteService, private clientService:ClientService, private  produiService:ProduitService,private categorieService:CategorieService, private router:Router) { }
+  message: string="";
+  public stockProduit: number=0;
+  public prix: number=0;
+
+  constructor(public messageService:MessageService, private clienService:ClientService,private produitService:ProduitService,private personneService:PersonneService, private route:ActivatedRoute,private venteService:VenteService, private clientService:ClientService, private  produiService:ProduitService,private categorieService:CategorieService, private router:Router) { }
 
   ngOnInit(): void {
     let id=this.route.snapshot.params['id'];
@@ -41,7 +46,7 @@ export class AjoutventeComponent implements OnInit {
     if(id!=null&&id!=undefined){
       this.venteService.getventeById$(this.route.snapshot.params['id']).subscribe(data=>{
         this.ventebyId=data.message;
-        console.log(data);
+        this.messageService.setMessage(""+JSON.stringify(data.message));;
         this.idClient=this.ventebyId[0].idClient;
         this.idProduit=this.ventebyId[0].idProduit;
         this.quantite=this.ventebyId[0].quantite;
@@ -57,6 +62,10 @@ export class AjoutventeComponent implements OnInit {
 
       console.log(data.message);
     })
+    this.clientService.getclients$().subscribe(data=>{
+      this.listClient=data.message;
+      console.log(data.message);
+    })
 
     this.produitService.getProduit$().subscribe(data=>{
       this.listproduit=data.message;
@@ -70,7 +79,8 @@ export class AjoutventeComponent implements OnInit {
   }
   modifierVente(){
     this.venteService.updateventeById$(+this.idClient, +this.idProduit, +this.quantite, +this.prixTotal,+this.idUser, +this.taxe, +this.idVente).subscribe(data=>{
-      console.log(data);
+      this.messageService.setMessage(""+JSON.stringify(data.message));;
+      this.messageService.setMessage(""+data.message)
       this.rechargeClick();
     })
 
@@ -78,8 +88,10 @@ export class AjoutventeComponent implements OnInit {
 
   }
   ajouterVente(){
-    this.venteService.ajoutvente$(+this.idClient, +this.idProduit, +this.quantite, +this.prixTotal,+this.idUser, +this.taxe ).subscribe(data=>{
-      console.log(data);
+    this.prixTotal=this.quantite*this.prix;
+    this.venteService.ajoutvente$(+this.idClient, +this.idProduit, +this.quantite, this.prixTotal,this.idUser, this.taxe ).subscribe(data=>{
+      this.messageService.setMessage(""+JSON.stringify(data.message));;
+      this.messageService.setMessage(""+data.message)
       this.rechargeClick();
     })
   }
@@ -98,11 +110,32 @@ export class AjoutventeComponent implements OnInit {
   }
 
   onChangeClient($event: any) {
-    this.idClient=$event.split(";")[0];
-    this.adresseImage=$event.split(";")[1];
+    this.idClient=$event
   }
 
-  onChangeProduit($event: any) {
+  onChangeProduit($event: number) {
     this.idProduit=$event;
+
+    this.produitService.getProduitById$(this.idProduit).subscribe(data=>{
+      this.stockProduit=data.message[0].stock;
+      this.prix=data.message[0].Prix;
+      this.prixTotal=+(this.quantite*this.prix);
+      console.log(data);
+      console.log(this.stockProduit)
+      console.log(this.prix);
+    })
+  }
+
+  onChangeQuantite($event: number) {
+    this.produitService.getProduitById$(this.idProduit).subscribe(data=>{
+      this.stockProduit=data.message[0].stock;
+      this.prix=data.message[0].Prix;
+      this.prixTotal=this.quantite*this.prix;
+      console.log(data);
+      console.log(this.stockProduit)
+      console.log(this.prix);
+      console.log(this.quantite);
+      console.log(this.prixTotal);
+    })
   }
 }

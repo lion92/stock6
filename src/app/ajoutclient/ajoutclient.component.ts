@@ -5,6 +5,7 @@ import {ProduitService} from "../produit.service";
 import {CategorieService} from "../categorie.service";
 import Client from "../interface/Client";
 import {ClientService} from "../client.service";
+import {MessageService} from "../message.service";
 @Component({
   selector: 'app-ajoutclient',
   templateUrl: './ajoutclient.component.html',
@@ -16,7 +17,7 @@ export class AjoutclientComponent implements OnInit {
   public societe: string="";
   public poste: string="";
   public idClient: number=0;
-  constructor(private route:ActivatedRoute, private clientService:ClientService, private  produiService:ProduitService,private categorieService:CategorieService, private router:Router) { }
+  constructor(public messageService:MessageService, private route:ActivatedRoute, private clientService:ClientService, private  produiService:ProduitService,private categorieService:CategorieService, private router:Router) { }
 
   ngOnInit(): void {
     console.log(this.route.snapshot.params['id'])
@@ -26,7 +27,7 @@ export class AjoutclientComponent implements OnInit {
     if(id!=null&&id!=undefined){
       this.clientService.getclientById$(this.route.snapshot.params['id']).subscribe(data=>{
         this.clientbyId=data.message;
-        console.log(data);
+        this.messageService.setMessage(""+JSON.stringify(data.message));;
         this.idPersonne=this.clientbyId[0].idPersonneClient;
         this.societe=this.clientbyId[0].societe;
         this.poste=this.clientbyId[0].poste;
@@ -38,7 +39,7 @@ export class AjoutclientComponent implements OnInit {
   }
   modifierClient(){
     this.clientService.updateclientById$(this.idPersonne, this.idClient, this.societe, this.poste ).subscribe(data=>{
-      console.log(data);
+      this.messageService.setMessage(""+JSON.stringify(data.message));;
       this.rechargeClick();
     })
 
@@ -47,7 +48,7 @@ export class AjoutclientComponent implements OnInit {
   }
   ajouterClient(){
     this.clientService.ajoutclient$(this.idPersonne, this.societe, this.poste ).subscribe(data=>{
-      console.log(data);
+      this.messageService.setMessage(""+JSON.stringify(data.message));;
       this.rechargeClick();
     })
   }

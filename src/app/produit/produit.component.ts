@@ -5,7 +5,12 @@ import {ProduitService} from "../produit.service";
 import Produit from "../interface/Produit";
 import {ActivatedRoute} from "@angular/router";
 import { Router,ParamMap } from '@angular/router';
-import Personne from "../interface/Personne";
+
+
+import html2canvas from "html2canvas";
+
+import jsPDF from "jspdf";
+import {MessageService} from "../message.service";
 @Component({
   selector: 'app-produit',
   templateUrl: './produit.component.html',
@@ -13,9 +18,10 @@ import Personne from "../interface/Personne";
 })
 export class ProduitComponent implements OnInit {
 
-  constructor(private router:Router,public dialog:MatDialog, public produitService:ProduitService,private route:ActivatedRoute) { }
+  constructor(public messageService:MessageService,private router:Router,public dialog:MatDialog, public produitService:ProduitService,private route:ActivatedRoute) { }
   public listproduit:Produit[]=[];
   public pageSlice:Produit[]=[];
+  public listId: number[]= [];
   ngOnInit(): void {
 
     this.produitService.getProduit$().subscribe(data=>{
@@ -40,11 +46,16 @@ export class ProduitComponent implements OnInit {
     });
   }
 
-  supprimerProduit(idProduit:string){
+  supprimerProduit(idProduit:number){
 
     this.produitService.supprimerProduit$(+idProduit).subscribe(data=>{
-      console.log(data);
+      this.messageService.setMessage(""+JSON.stringify(data.message));;
       this.rechargeClick();
+    })
+  }
+  supprimerListProduit(listAsupprimer:number[]){
+    listAsupprimer.forEach(data=>{
+      this.supprimerProduit(data);
     })
   }
   rechargeClick() {
@@ -61,5 +72,35 @@ export class ProduitComponent implements OnInit {
       endIndex=this.listproduit.length;
     }
     this.pageSlice=this.listproduit.slice(startIndex, endIndex);
+  }
+
+  onChangeSelect(clientId:number, $event: any) {
+    if($event.target.checked===true) {
+      this.listId.push(clientId);
+    } else {
+      let index = this.listId.indexOf(clientId)
+      console.log(index);
+      if(index>-1) {
+        this.listId.splice(index, 1);
+      }
+    }
+    console.log(this.listId);
+
+  }
+
+  generatePDF() {
+    var data = document.getElementById('tableProduit');
+    if(data!==null){
+    html2canvas(data).then(canvas => {
+      var imgWidth = 208;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jsPDF('p', 'mm', 'a4');
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.save('newPDF.pdf');
+
+    });
+    }
   }
 }

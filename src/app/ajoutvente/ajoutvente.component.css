@@ -2,6 +2,14 @@
   box-sizing: border-box;
 
 }
+.information{
+  color: red;
+  background-color: #b3b3d3;
+  border: 2px solid;
+  box-shadow: red;
+  width: 50%;
+  height: 50%;
+}
 img{width: 30px;
 
 height: 30px}

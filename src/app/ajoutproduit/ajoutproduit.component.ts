@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ProduitService} from "../produit.service";
 import Produit from "../interface/Produit";
 import { Router,ParamMap } from '@angular/router';
+import {MessageService} from "../message.service";
 @Component({
   selector: 'app-ajoutproduit',
   templateUrl: './ajoutproduit.component.html',
@@ -15,7 +16,7 @@ public produitbyId:Produit[]=[];
   public Prix: any;
   public idProduit: any;
   public stock: any;
-  constructor(private route:ActivatedRoute, private  produiService:ProduitService, private router:Router) { }
+  constructor(public messageService: MessageService, private route:ActivatedRoute, private  produiService:ProduitService, private router:Router) { }
 
   ngOnInit(): void {
     console.log(this.route.snapshot.params['id'])
@@ -25,7 +26,7 @@ public produitbyId:Produit[]=[];
     if(id!=null&&id!=undefined){
       this.produiService.getProduitById$(this.route.snapshot.params['id']).subscribe(data=>{
         this.produitbyId=data.message;
-        console.log(data);
+        this.messageService.setMessage(""+JSON.stringify(data.message));;
         this.nom=this.produitbyId[0].nom;
         this.idCategorie=this.produitbyId[0].idCategorie;
         this.Prix=this.produitbyId[0].Prix;
@@ -38,7 +39,7 @@ public produitbyId:Produit[]=[];
   }
 modifierProduit(){
     this.produiService.updateProduitById$((+this.idCategorie), (+this.Prix), (+this.stock), this.nom, + (+this.idProduit)).subscribe(data=>{
-      console.log(data);
+      this.messageService.setMessage(""+JSON.stringify(data.message));;
       this.rechargeClick();
     })
 
@@ -47,7 +48,7 @@ modifierProduit(){
   }
   ajouterProduit(){
     this.produiService.ajoutProduit$((+this.idCategorie), (+this.Prix), (+this.stock), this.nom).subscribe(data=>{
-      console.log(data);
+      this.messageService.setMessage(""+JSON.stringify(data.message));
       this.rechargeClick();
     })
 }
