@@ -100,7 +100,7 @@ export class AjoutventeComponent implements OnInit {
   rechargeClick() {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['./categorie'])
+    this.router.navigate(['./vente'])
   }
 
   onChange($event: any) {

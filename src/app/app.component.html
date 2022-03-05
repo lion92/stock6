@@ -1,19 +1,24 @@
-
+<div class="container">
 <nav class="navbar p-3" style="background: lightyellow">
-  <a [routerLink]="['/login']">Login</a>
-  <a [routerLink]="['/register']">Register</a>
-  <a [routerLink]="['/client']">Client</a>
-  <a [routerLink]="['/personne']">Personne</a>
-  <a [routerLink]="['/produit']">Produit</a>
-  <a [routerLink]="['/categorie']">Categorie</a>
-  <a [routerLink]="['/vente']">Vente</a>
-  <a [routerLink]="['/ajoutclient']">Ajout Client</a>
-  <a [routerLink]="['/ajoutproduit']">Ajout Produit</a>
-  <a [routerLink]="['/ajoutcategorie']">Ajout Categorie</a>
-  <a [routerLink]="['/ajoutpersonne']">Ajout Personne</a>
-  <a [routerLink]="['/ajoutvente']">Ajout Vente</a>
+  <div> <a [routerLink]="['/login']">Login</a></div>
+  <div><a [routerLink]="['/register']">Register</a></div>
+  </nav>
+<nav class="navbar p-3">
+ <div>  <a [routerLink]="['/client']">Client</a></div>
+ <div> <a [routerLink]="['/personne']">Personne</a></div>
+  <div><a [routerLink]="['/produit']">Produit</a></div>
+  <div><a [routerLink]="['/categorie']">Categorie</a></div>
+  <div>  <a [routerLink]="['/vente']">Vente</a></div>
+
   <a [routerLink]="['/graphique']">Graphique Vente</a>
 </nav>
+  <nav class="navbar p-3"><div>  <a [routerLink]="['/ajoutclient']">Ajout Client</a></div>
+    <div> <a [routerLink]="['/ajoutproduit']">Ajout Produit</a></div>
+ <div> <a [routerLink]="['/ajoutcategorie']">Ajout Categorie</a></div>
+ <div> <a [routerLink]="['/ajoutpersonne']">Ajout Personne</a></div>
+ <div> <a [routerLink]="['/ajoutvente']">Ajout Vente</a></div></nav>
+</div>
+
 
 <div id="pricicpal">
   <router-outlet></router-outlet>.

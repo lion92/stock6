@@ -34,7 +34,7 @@
         <th>Email</th>
         <th>Date Ajout</th>
         <th>Id</th>
-
+        <th>QRCODE</th>
         <th>Actions</th>
 
       </tr>
@@ -60,7 +60,12 @@
         <td>{{personne.email}}</td>
         <td>{{personne.ajoutDate}}</td>
         <td>{{personne.idPersonne}}</td>
-
+          <td><ngx-qrcode
+            [elementType]="elementType"
+            [value] = 'personne.nom+" "+personne.email'
+            cssClass = "bshadow"
+          >
+          </ngx-qrcode></td>
 
         <td>
           <i class="material-icons" data-toggle="tooltip" [routerLink]="['/updatePersonne',personne.idPersonne]" title="Edit">&#xE254;</i>
@@ -69,6 +74,7 @@
       </tr>
       </tbody>
     </table>
+
     </div>
     <button class="btn btn-danger"(click)="generatePDF()">Download PDF</button>
     <div class="clearfix">
@@ -79,4 +85,5 @@
                      aria-label="Select page">
       </mat-paginator>
   </div>
+</div>
 </div>

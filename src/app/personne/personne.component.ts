@@ -10,6 +10,7 @@ import {HttpClient} from "@angular/common/http";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import {MessageService} from "../message.service";
+import {NgxQrcodeElementTypes} from "ngx-qrcode2";
 @Component({
   selector: 'app-personne',
   templateUrl: './personne.component.html',
@@ -20,6 +21,7 @@ export class PersonneComponent implements OnInit {
   PhotoFileName:string="http://localhost:8000/";
   public pageSlice:Personne[]=[];
   public listId: number[]= [];
+  public elementType:any=NgxQrcodeElementTypes.URL;
   constructor(public messageService: MessageService, private http:HttpClient,private personneService:PersonneService,private router:Router,public dialog:MatDialog, public produitService:ProduitService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {

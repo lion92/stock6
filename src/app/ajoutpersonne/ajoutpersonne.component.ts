@@ -5,6 +5,7 @@ import Personne from "../interface/Personne";
 import {PersonneService} from "../personne.service";
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "../message.service";
+import {NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels} from "ngx-qrcode2";
 
 @Component({
   selector: 'app-ajoutpersonne',
@@ -25,7 +26,9 @@ export class AjoutpersonneComponent implements OnInit {
   dateAjout: any;
   PhotoFileName: string="";
   public listpersonne:Personne[]=[];
-
+  public elementType:any=NgxQrcodeElementTypes.URL;
+  public correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
+  public strQRCODE:string="";
   constructor(public messageService: MessageService, private http:HttpClient,private route:ActivatedRoute, private  produiService:ProduitService, private router:Router, private personneService:PersonneService) { }
 
   ngOnInit(): void {
@@ -33,6 +36,7 @@ export class AjoutpersonneComponent implements OnInit {
       this.listpersonne=data.message;
 
       console.log(data.message);
+
     })
     this.route.paramMap.subscribe(params=>{
       let id= params.get("id");
@@ -63,6 +67,11 @@ export class AjoutpersonneComponent implements OnInit {
         console.log(this.personnebyId)
       })
     }
+    this.listpersonne.forEach(Personne=>{
+      this.strQRCODE+=" "+JSON.stringify(Personne);
+    })
+
+
   }
   modifierPersonne(){
     this.personneService.updatePersonneById$( this.nom, this.prenom, this.age, this.ville, this.numero, this.adresse, this.codePostale, this.email, this.idPersonne).subscribe(data=>{

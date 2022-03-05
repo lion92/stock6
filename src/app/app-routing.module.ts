@@ -46,9 +46,6 @@ const routes: Routes = [
     path:"produit",component:ProduitComponent
   },
   {
-    path:"produit",component:ProduitComponent
-  },
-  {
     path:"vente",component:VenteComponent
   },  {
     path:"categorie",component:CategorieComponent

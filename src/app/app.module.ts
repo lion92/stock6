@@ -21,7 +21,7 @@ import { ChartventeComponent } from './chartvente/chartvente.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonneComponent } from './personne/personne.component';
 import { AjoutpersonneComponent } from './ajoutpersonne/ajoutpersonne.component';
-
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 import {A11yModule} from '@angular/cdk/a11y';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import {ClipboardModule} from '@angular/cdk/clipboard';
@@ -134,7 +134,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatTreeModule,
     OverlayModule,
     PortalModule,
-    ScrollingModule
+    ScrollingModule, NgxQRCodeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
