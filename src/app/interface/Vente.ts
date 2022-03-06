@@ -7,4 +7,5 @@ export default interface Vente {
   idUser:number;
   taxe:number;
   dateVente:string;
+  nom:string;
 }

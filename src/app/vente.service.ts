@@ -20,6 +20,7 @@ export class VenteService {
   private updateventeService:string="updateVente"
   private ajoutervente:string="ajoutVente"
   private deletevente:string="deleteVente"
+  private lisfacture: Vente[]=[];
   constructor(private  http:HttpClient) { }
   getventes$(): Observable<any> {
     let res: Observable<Vente[]> = this.http.get<any[]>(
@@ -29,8 +30,15 @@ export class VenteService {
     console.log(res);
     return res;
   }
+  setlistfacture(listFacture:Vente[]){
+    this.lisfacture=listFacture;
 
-  getventeById$(id:string): Observable<any> {
+  }
+  getlistfacture(){
+    return this.lisfacture;
+  }
+
+  getventeById$(id:number): Observable<any> {
     let res: Observable<Vente[]> = this.http.get<any[]>(
       this.url + this.venteByidUrl + "/" + id,
       this.optionRequete

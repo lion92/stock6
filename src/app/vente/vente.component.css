@@ -83,10 +83,10 @@ table.table td a {
   outline: none !important;
 }
 table.table td a:hover {
-  color: #e5f321;
+  color: #ffffff;
 }
 table.table td a.edit {
-  color: #FFC107;
+  color: #9c973a;
 }
 table.table td a.delete {
   color: #F44336;
@@ -219,4 +219,7 @@ table.table .avatar {
 }
 .modal form label {
   font-weight: normal;
+}
+#facture{
+  background: white;
 }
