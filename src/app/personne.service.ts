@@ -23,6 +23,7 @@ url="http://localhost:8000/";
   private updatePersonneImage:string="updatePersonneImage"
   private ajouterPersonne:string="registerPersonne"
   private deletePersonne:string="deletePersonne"
+  private personneByEmailUrl: string="selectPersonneParEmail";
   constructor(private  http:HttpClient) { }
   getPersonnes$(): Observable<any> {
     let res: Observable<Personne[]> = this.http.get<any[]>(
@@ -33,7 +34,7 @@ url="http://localhost:8000/";
     return res;
   }
 
-  getPersonneById$(id:string): Observable<any> {
+  getPersonneById$(id:number): Observable<any> {
     let res: Observable<Personne[]> = this.http.get<any[]>(
       this.url + this.personneByidUrl + "/" + id,
       this.optionRequete
@@ -41,6 +42,16 @@ url="http://localhost:8000/";
     console.log(res);
     return res;
   }
+  getPersonneByEmail$(email:string): Observable<any> {
+    let res: Observable<Personne[]> = this.http.get<any[]>(
+      this.url + this.personneByEmailUrl + "/" + email,
+      this.optionRequete
+    );
+    console.log(res);
+    return res;
+  }
+
+
   updatePersonneById$( nom:string, prenom:string, age:number, ville:string, numero:string, adresse:string, codePostale:string, email:string, idPersonne:number): Observable<any> {
     let res: Observable<Personne[]> = this.http.put<any[]>(
       this.url + this.updatePersonneService,

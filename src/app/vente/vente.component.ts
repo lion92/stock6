@@ -12,7 +12,7 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import {MessageService} from "../message.service";
 import {FactureComponent} from "../facture/facture.component";
-
+import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-vente',
   templateUrl: './vente.component.html',
@@ -137,6 +137,19 @@ export class VenteComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
   }
+  exportexcel(): void
+  {
+    /* pass here the table id */
+    let element = document.getElementById('tableVente');
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
 
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, "dataExcel.xlsx");
+
+  }
 
 }

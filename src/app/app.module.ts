@@ -70,6 +70,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
 
 import { MatChipsModule } from '@angular/material/chips';
 import { FactureComponent } from './facture/facture.component';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +87,8 @@ import { FactureComponent } from './facture/facture.component';
     ChartventeComponent,
     PersonneComponent,
     AjoutpersonneComponent,
-    FactureComponent
+    FactureComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

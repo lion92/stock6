@@ -105,7 +105,7 @@ export class AjoutpersonneComponent implements OnInit {
       this.personneService.updatePersonneByIdImage$(file.name, this.idPersonne).subscribe(data2=>{
 
       })
-      this.personneService.getPersonneById$(""+this.idPersonne).subscribe(data3=>{
+      this.personneService.getPersonneById$(this.idPersonne).subscribe(data3=>{
 
         this.PhotoFileName="http://localhost:8000/"+data3.message.image;
 

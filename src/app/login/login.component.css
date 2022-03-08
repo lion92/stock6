@@ -71,8 +71,7 @@ html,body {
   cursor: default;
   outline: none;
 }
-
-form {
+#accesspanel{
   border: 1px solid #191919;
   border-radius: .4em;
   bottom: 0;
@@ -87,7 +86,7 @@ form {
   width: 300px;
 }
 
-form:after {
+#accesspanel:after {
 
   content: "";
   display: block;
@@ -98,7 +97,7 @@ form:after {
   width: 150px;
 }
 
-form:before {
+#accesspanel:before {
   border-radius: 50%;
   box-shadow: 0 0 6px 4px #fff;
   content: "";

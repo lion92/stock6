@@ -1,9 +1,10 @@
 <div class="container">
+  <h1>{{this.email}}</h1>
 <nav class="navbar p-3" style="background: lightyellow">
   <div> <a [routerLink]="['/login']">Login</a></div>
   <div><a [routerLink]="['/register']">Register</a></div>
   </nav>
-<nav class="navbar p-3">
+<nav *ngIf="this.userSerVice.getBoolConnecter()" class="navbar p-3">
  <div>  <a [routerLink]="['/client']">Client</a></div>
  <div> <a [routerLink]="['/personne']">Personne</a></div>
   <div><a [routerLink]="['/produit']">Produit</a></div>
@@ -12,7 +13,7 @@
 
   <a [routerLink]="['/graphique']">Graphique Vente</a>
 </nav>
-  <nav class="navbar p-3"><div>  <a [routerLink]="['/ajoutclient']">Ajout Client</a></div>
+  <nav *ngIf="this.userSerVice.getBoolConnecter()" class="navbar p-3"><div>  <a [routerLink]="['/ajoutclient']">Ajout Client</a></div>
     <div> <a [routerLink]="['/ajoutproduit']">Ajout Produit</a></div>
  <div> <a [routerLink]="['/ajoutcategorie']">Ajout Categorie</a></div>
  <div> <a [routerLink]="['/ajoutpersonne']">Ajout Personne</a></div>

@@ -2,20 +2,21 @@
   <div class="background"></div>
 </div>
 
-<form id="accesspanel" action="login" method="post">
+<div id="accesspanel">
   <h1 id="litheader">Connexion Gestion des ventes et stock</h1>
   <div class="inset">
     <p>
-      <input type="text" name="username" id="email" placeholder="Email address">
+      <input type="text" [(ngModel)]="this.email" name="username" id="email" placeholder="Email address">
     </p>
     <p>
-      <input type="password" name="password" id="password" placeholder="Access code">
+      <input type="password" [(ngModel)]="this.password"name="password" id="password" placeholder="Access code">
     </p>
 
-    <input class="loginLoginValue" type="hidden" name="service" value="login" />
+  <button class="btn btn-danger" (click)="this.login()">Login</button>
+    <button class="btn btn-danger" (click)="this.deconnexion()">Deconnexion</button>
   </div>
   <p class="p-container">
     <input type="submit" name="Login" id="go" value="Connexion">
   </p>
-</form>
+</div>
 

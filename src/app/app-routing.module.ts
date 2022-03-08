@@ -12,63 +12,68 @@ import {AjoutcategorieComponent} from "./ajoutcategorie/ajoutcategorie.component
 import {AjoutpersonneComponent} from "./ajoutpersonne/ajoutpersonne.component";
 import {PersonneComponent} from "./personne/personne.component";
 import {LoginComponent} from "./login/login.component";
-
+import {RegisterComponent} from "./register/register.component";
+import{
+  GuardlinkService
+} from "./guardlink.service";
 
 const routes: Routes = [
   {
-    path:"updateProduit",component:ProduitComponent
+    path:"updateProduit",component:ProduitComponent,canActivate:[GuardlinkService]
   },
   {
-    path:"updatePersonne",component:PersonneComponent
+    path:"updatePersonne",component:PersonneComponent,canActivate:[GuardlinkService]
   },{
-    path:"updatePersonne/:id",component:AjoutpersonneComponent
+    path:"updatePersonne/:id",component:AjoutpersonneComponent,canActivate:[GuardlinkService]
   },
   {
-    path:"updateClient",component:ClientComponent
+    path:"updateClient",component:ClientComponent,canActivate:[GuardlinkService]
   },{
-    path:"updateClient/:id",component:AjoutclientComponent
+    path:"updateClient/:id",component:AjoutclientComponent,canActivate:[GuardlinkService]
   },
   {
-    path:"updateCategorie",component:CategorieComponent
+    path:"updateCategorie",component:CategorieComponent,canActivate:[GuardlinkService]
   },{
-    path:"updateCategorie/:id",component:AjoutcategorieComponent
+    path:"updateCategorie/:id",component:AjoutcategorieComponent,canActivate:[GuardlinkService]
   },
   {
-    path:"updateVente",component:VenteComponent
+    path:"updateVente",component:VenteComponent,canActivate:[GuardlinkService]
   },{
-    path:"updateVente/:id",component:AjoutventeComponent
+    path:"updateVente/:id",component:AjoutventeComponent,canActivate:[GuardlinkService]
   },
   {
-    path:"updateProduit/:id",component:AjoutproduitComponent
+    path:"updateProduit/:id",component:AjoutproduitComponent,canActivate:[GuardlinkService]
   },
 
   {
-    path:"produit",component:ProduitComponent
+    path:"produit",component:ProduitComponent,canActivate:[GuardlinkService]
   },
   {
-    path:"vente",component:VenteComponent
+    path:"vente",component:VenteComponent,canActivate:[GuardlinkService]
   },  {
-    path:"categorie",component:CategorieComponent
+    path:"categorie",component:CategorieComponent,canActivate:[GuardlinkService]
   },
   {
-    path:"client",component:ClientComponent
+    path:"client",component:ClientComponent,canActivate:[GuardlinkService]
   },
   {
-    path:"graphique",component:ChartventeComponent
+    path:"graphique",component:ChartventeComponent,canActivate:[GuardlinkService]
   },  {
-    path:"ajoutproduit",component:AjoutproduitComponent
+    path:"ajoutproduit",component:AjoutproduitComponent,canActivate:[GuardlinkService]
   },  {
-    path:"ajoutvente",component:AjoutventeComponent
+    path:"ajoutvente",component:AjoutventeComponent,canActivate:[GuardlinkService]
   },  {
-    path:"ajoutclient",component:AjoutclientComponent
+    path:"ajoutclient",component:AjoutclientComponent,canActivate:[GuardlinkService]
   },  {
-    path:"ajoutcategorie",component:AjoutcategorieComponent
+    path:"ajoutcategorie",component:AjoutcategorieComponent,canActivate:[GuardlinkService]
+  }, {
+    path:"register",component:RegisterComponent
   }
   ,  {
-    path:"ajoutpersonne",component:AjoutpersonneComponent
+    path:"ajoutpersonne",component:AjoutpersonneComponent,canActivate:[GuardlinkService]
   }
   ,  {
-    path:"personne",component:PersonneComponent
+    path:"personne",component:PersonneComponent,canActivate:[GuardlinkService]
   },  {
     path:"login",component:LoginComponent
   }
