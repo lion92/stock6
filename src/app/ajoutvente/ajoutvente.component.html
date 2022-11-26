@@ -17,7 +17,7 @@
 
     <div class="form-input">
       <select [ngModel]="this.idUser" (ngModelChange)="onChange($event)" name="sel2">
-        <option [value]="perosnne.idPersonne" *ngFor="let perosnne of listpersonne">{{perosnne.nom}}</option>
+        <option [value]="user.idUser" *ngFor="let user of listuser">{{user.email}}</option>
       </select>
     </div>
 {{this.idUser}}

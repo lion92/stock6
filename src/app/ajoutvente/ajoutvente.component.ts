@@ -10,6 +10,8 @@ import {PersonneService} from "../personne.service";
 import Personne from "../interface/Personne";
 import Produit from "../interface/Produit";
 import {MessageService} from "../message.service";
+import User from "../interface/User";
+import {UserserviceService} from "../userservice.service";
 @Component({
   selector: 'app-ajoutvente',
   templateUrl: './ajoutvente.component.html',
@@ -31,15 +33,22 @@ export class AjoutventeComponent implements OnInit {
   public idUserCreation:number=0;
   public listpersonne:Personne[]=[];
 
+  public listuser:User[]= [];
+
   public listproduit:Produit[]=[];
   adresseImage: string="";
   message: string="";
   public stockProduit: number=0;
   public prix: number=0;
 
-  constructor(public messageService:MessageService, private clienService:ClientService,private produitService:ProduitService,private personneService:PersonneService, private route:ActivatedRoute,private venteService:VenteService, private clientService:ClientService, private  produiService:ProduitService,private categorieService:CategorieService, private router:Router) { }
+  constructor(public userservice: UserserviceService,public messageService:MessageService, private clienService:ClientService,private produitService:ProduitService,private personneService:PersonneService, private route:ActivatedRoute,private venteService:VenteService, private clientService:ClientService, private  produiService:ProduitService,private categorieService:CategorieService, private router:Router) { }
 
   ngOnInit(): void {
+  this.userservice.getUsers$().subscribe(data=>{
+    this.listuser=data.message;
+    console.log(data.message)
+    console.log("////////LLLLLLLLLLLLLLLLLLLLLLLLLLLLOOOOOOOOOOOOOLLLLLLLLLLLLL")
+  })
     let id=this.route.snapshot.params['id'];
     console.log("//");
     console.log(id);
@@ -89,7 +98,7 @@ export class AjoutventeComponent implements OnInit {
   }
   ajouterVente(){
     this.prixTotal=this.quantite*this.prix;
-    this.venteService.ajoutvente$(+this.idClient, +this.idProduit, +this.quantite, this.prixTotal,this.idUser, this.taxe ).subscribe(data=>{
+    this.venteService.ajoutvente$(+this.idClient, +this.idProduit, +this.quantite, +this.prixTotal,+this.idUser, +this.taxe ).subscribe(data=>{
       this.messageService.setMessage(""+JSON.stringify(data.message));;
       this.messageService.setMessage(""+data.message)
       this.rechargeClick();
